@@ -32,6 +32,13 @@ def setup_runnable():
     )
     cl.user_session.set("runnable", runnable)
 
+def get_chat_memory():
+    return ConversationSummaryBufferMemory(
+        llm=ChatOpenAI(streaming=True),
+        max_token_limit=1000,
+        return_messages=True
+    )
+
 
 @cl.password_auth_callback
 def auth():
@@ -40,21 +47,13 @@ def auth():
 
 @cl.on_chat_start
 async def on_chat_start():
-    cl.user_session.set("memory", ConversationSummaryBufferMemory(
-        llm=ChatOpenAI(streaming=True),
-        max_token_limit=1000,
-        return_messages=True
-    ))
+    cl.user_session.set("memory", get_chat_memory())
     setup_runnable()
 
 
 @cl.on_chat_resume
 async def on_chat_resume(thread: ThreadDict):
-    memory = ConversationSummaryBufferMemory(
-        llm=ChatOpenAI(streaming=True),
-        max_token_limit=1000,
-        return_messages=True
-    )
+    memory = get_chat_memory()
     root_messages = [m for m in thread["steps"] if m["parentId"] == None]
     for message in root_messages:
         if message["type"] == "user_message":
