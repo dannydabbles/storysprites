@@ -5,14 +5,14 @@ from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.schema.output_parser import StrOutputParser
 from langchain.schema.runnable import Runnable, RunnablePassthrough, RunnableLambda
 from langchain.schema.runnable.config import RunnableConfig
-from langchain.memory import ConversationBufferMemory
+from langchain.memory import ConversationSummaryBufferMemory
 
 from chainlit.types import ThreadDict
 import chainlit as cl
 
 
 def setup_runnable():
-    memory = cl.user_session.get("memory")  # type: ConversationBufferMemory
+    memory = cl.user_session.get("memory")  # type: ConversationSummaryBufferMemory
     model = ChatOpenAI(streaming=True)
     prompt = ChatPromptTemplate.from_messages(
         [
@@ -40,13 +40,21 @@ def auth():
 
 @cl.on_chat_start
 async def on_chat_start():
-    cl.user_session.set("memory", ConversationBufferMemory(return_messages=True))
+    cl.user_session.set("memory", ConversationSummaryBufferMemory(
+        llm=ChatOpenAI(streaming=True),
+        max_token_limit=1000,
+        return_messages=True
+    ))
     setup_runnable()
 
 
 @cl.on_chat_resume
 async def on_chat_resume(thread: ThreadDict):
-    memory = ConversationBufferMemory(return_messages=True)
+    memory = ConversationSummaryBufferMemory(
+        llm=ChatOpenAI(streaming=True),
+        max_token_limit=1000,
+        return_messages=True
+    )
     root_messages = [m for m in thread["steps"] if m["parentId"] == None]
     for message in root_messages:
         if message["type"] == "user_message":
@@ -61,7 +69,7 @@ async def on_chat_resume(thread: ThreadDict):
 
 @cl.on_message
 async def on_message(message: cl.Message):
-    memory = cl.user_session.get("memory")  # type: ConversationBufferMemory
+    memory = cl.user_session.get("memory")  # type: ConversationSummaryBufferMemory
 
     runnable = cl.user_session.get("runnable")  # type: Runnable
 
@@ -77,3 +85,4 @@ async def on_message(message: cl.Message):
 
     memory.chat_memory.add_user_message(message.content)
     memory.chat_memory.add_ai_message(res.content)
+    memory.save_context({"input": message.content}, {"output": res.content})

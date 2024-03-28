@@ -11,6 +11,7 @@ python = "^3.10"
 langchain = "^0.1.13"
 chainlit = "^1.0.401"
 openai = "^1.14.3"
+tiktoken = "^0.6.0"
 
 
 [build-system]
