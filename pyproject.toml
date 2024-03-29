@@ -12,6 +12,8 @@ langchain = "^0.1.13"
 chainlit = "^1.0.401"
 openai = "^1.14.3"
 tiktoken = "^0.6.0"
+langchain-openai = "^0.1.1"
+chromadb = "^0.4.24"
 
 
 [build-system]
