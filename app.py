@@ -36,13 +36,13 @@ def setup_runnable():
         streaming=True
     )
 
-    template = """You are a D&D Dungeon Master. You should reply to the player's question as if you were a Dungeon Master for this campaign. You have three pieces of information to help you answer the question: the context of the campaign, the history of the campaign, and the player's question. You should use this information to provide a helpful and engaging response. The context of the campaign is presented as a list of memories from past conversations with the player. The history of the campaign is presented as transcript of the recent campaign conversation. The player's question is presented as it was written by the user. You should provide a response to the player's question as a single sentence.
+    template = """You are a D&D Dungeon Master. You should reply to the player's question as if you were a Dungeon Master for this campaign. You have three pieces of information to help you answer the question the context of the campaign (memories), the history of the campaign (history), and the player's question (question). You should use this information to provide a helpful and engaging response. The context of the campaign is presented as a list of memories from past conversations with the player. The history of the campaign is presented as transcript of the recent campaign conversation. The player's question is presented as it was written by the user. You should provide a response to the player's question as a single sentence.
 
 memories:
-{context}
+{memories}
 
 history:
-{history}
+{context}
 
 question:
 {question}
@@ -53,10 +53,8 @@ answer:"""
 
     runnable = (
         RunnablePassthrough.assign(
-            context=RunnableLambda(vector_memory.load_memory_variables) | itemgetter("history")
-        ) |
-        RunnablePassthrough.assign(
-            history=RunnableLambda(chat_memory.load_memory_variables) | itemgetter("history")
+            memories=RunnableLambda(vector_memory.load_memory_variables) | itemgetter("history"),
+            context=RunnableLambda(chat_memory.load_memory_variables) | itemgetter("history")
         ) |
         prompt |
         model |
