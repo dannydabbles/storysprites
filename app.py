@@ -68,8 +68,6 @@ def get_chat_memory():
         max_token_limit=1000,
     )
 
-    memory.clear()
-
     return memory
 
 def get_vector_memory():
@@ -96,8 +94,6 @@ def get_vector_memory():
     memory = VectorStoreRetrieverMemory(
             retriever=retriever,
     )
-
-    memory.clear()
 
     return memory
 
