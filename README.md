@@ -12,6 +12,8 @@ make install
 
 ### Run
 
+Note: You need to have the OpenAI API key to run the application. See the "Environment Variables" section below for more information.
+
 ```bash
 make run
 ```
@@ -31,17 +33,17 @@ AI: The ancient artifact is called the Eye of Vecna.
 
 Create a `.env` file in the root directory of the project from .env.example and update the following environment variables:
 
-### Copy .env.example to .env
+### Copy .env.example to .env and update openai api key
 
 ```bash
-OPENAI_API_KEY=sk-api-key-here
-CHAINLIT_AUTH_SECRET=sx*VSV/f~XiqV.,*lzGhWa3qp/d9z/*D6m2UEIG*DTncErh$1Su.JtH?jj@_4,nd
+cp .env.example .env
+vi .env
 ```
 
 ### Example of .env file environment variables
 
 ```bash
-OPENAI_API_KEY=sk-api-key-here
+OPENAI_API_KEY=sk-openai-api-key-here
 CHAINLIT_AUTH_SECRET=sx*VSV/f~XiqV.,*lzGhWa3qp/d9z/*D6m2UEIG*DTncErh$1Su.JtH?jj@_4,nd
 ```
 
