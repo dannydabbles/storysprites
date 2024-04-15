@@ -18,7 +18,7 @@ Note: You need to have the OpenAI API key to run the application. See the "Envir
 make run
 ```
 
-Navigate to `http://localhost:8000` in your browser.
+Navigate to `http://localhost:8000` in your browser. Login with the username `test` and password `test`.
 
 To use the AI Dungeon Master, simply ask a question as if you were a player in a D&D campaign. The AI Dungeon Master will generate a response based on the context of the campaign, the history of the campaign, and the player's question.
 
