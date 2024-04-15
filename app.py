@@ -5,23 +5,19 @@ from operator import itemgetter
 from openai import OpenAI
 
 from langchain_community.chat_models import ChatOpenAI
-from langchain.prompts import PromptTemplate, MessagesPlaceholder
+from langchain.prompts import PromptTemplate
 from langchain.schema.output_parser import StrOutputParser
-from langchain.schema.runnable import Runnable, RunnablePassthrough, RunnableLambda
+from langchain.schema.runnable import RunnablePassthrough, RunnableLambda
 from langchain.schema.runnable.config import RunnableConfig
 from langchain.memory import ConversationSummaryBufferMemory
 
 from langchain.retrievers import ParentDocumentRetriever
 
 from langchain.storage import InMemoryStore
-from langchain_community.document_loaders import TextLoader
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.memory import VectorStoreRetrieverMemory
-
-# Get DALL-E from langchain_community
-from langchain_community.utilities.dalle_image_generator import DallEAPIWrapper
 
 from chainlit.types import ThreadDict
 import chainlit as cl
