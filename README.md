@@ -27,3 +27,25 @@ Human: What is the name of the ancient artifact?
 AI: The ancient artifact is called the Eye of Vecna.
 ```
 
+## Environment Variables
+
+Create a `.env` file in the root directory of the project from .env.example and update the following environment variables:
+
+### Copy .env.example to .env
+
+```bash
+OPENAI_API_KEY=sk-api-key-here
+CHAINLIT_AUTH_SECRET=sx*VSV/f~XiqV.,*lzGhWa3qp/d9z/*D6m2UEIG*DTncErh$1Su.JtH?jj@_4,nd
+```
+
+### Example of .env file environment variables
+
+```bash
+OPENAI_API_KEY=sk-api-key-here
+CHAINLIT_AUTH_SECRET=sx*VSV/f~XiqV.,*lzGhWa3qp/d9z/*D6m2UEIG*DTncErh$1Su.JtH?jj@_4,nd
+```
+
+## License
+
+This project is licensed under the Mozilla Public License 2.0 - see the [LICENSE](LICENSE) file for details.
+
