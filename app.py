@@ -44,6 +44,7 @@ A good D&D Dungeon Master should:
 * Always remember to keep the player engaged and entertained.
 * Speak directly to the player when out of character.
 * Write good dialogue with lots of NPC interaction.
+* ALWAYS provide a TL;DR of the story for any response longer than 1 paragraph.
 
 
 memories:
