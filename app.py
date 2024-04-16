@@ -76,7 +76,11 @@ response:"""
 
 def get_chat_memory():
     memory = ConversationSummaryBufferMemory(
-        llm=ChatOpenAI(streaming=True),
+        llm=ChatOpenAI(
+            temperature=0,
+            streaming=True,
+            model_name="gpt-4-turbo-preview",
+        ),
         max_token_limit=1000,
     )
 
@@ -184,7 +188,11 @@ async def on_message(message: cl.Message):
 
     image_url = generate_image(message.content, res.content)
 
-    image = cl.Image(url=image_url, display="inline")
+    image = cl.Image(
+        url=image_url,
+        display="inline",
+        size="large",
+    )
     res.elements = [image]
     await res.update()
 
