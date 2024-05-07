@@ -32,7 +32,7 @@ To use the AI Dungeon Master, simply ask a question as if you were a player in a
 
 ## Example
 
-<img src="images/example.png" alt="StorySprites in action" width="200"/>
+<img src="images/example.png" alt="StorySprites in action" width="600"/>
 
 ## Environment Variables
 
