@@ -32,10 +32,7 @@ To use the AI Dungeon Master, simply ask a question as if you were a player in a
 
 ## Example
 
-```
-Human: What is the name of the ancient artifact?
-AI: The ancient artifact is called the Eye of Vecna.
-```
+<img src="images/example.png" alt="StorySprites in action" width="200"/>
 
 ## Environment Variables
 
