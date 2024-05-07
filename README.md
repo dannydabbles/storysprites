@@ -4,6 +4,14 @@ This is a simple AI Dungeon Master that can help you answer questions as if you 
 
 ## How to use
 
+### Poetry
+
+This project uses [Poetry](https://python-poetry.org/docs/#installing-with-the-official-installer) for dependency management. You can install Poetry by running the following command:
+
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
 ### Installation (poetry)
 
 ```bash
